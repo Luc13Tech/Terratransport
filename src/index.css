@@ -1,1 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+::selection {
+  background: #0F3D2E;
+  color: #F7F5EE;
+}
+
+/* Signature element: the route line — a thin thread that runs the length of
+   a section, marking waypoints (Départ / Transit / Arrivée) the way a real
+   shipping or trucking route would be plotted on a map. */
+.route-line {
+  position: relative;
+}
+.route-line::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6rem;
+  bottom: 0.6rem;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, #B8935A 12%, #B8935A 88%, transparent);
+}
+.route-dot {
+  position: absolute;
+  left: -4.5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: #F7F5EE;
+  border: 1.5px solid #B8935A;
+}
+
+.eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: #B8935A;
+}
+
+.container-tt {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container-tt {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+/* visible focus ring for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #B8935A;
+  outline-offset: 3px;
+}
