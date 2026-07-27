@@ -39,7 +39,7 @@ export default function Navbar() {
             className="h-10 w-10 rounded-full object-cover ring-1 ring-forest/20"
           />
           <span className="font-display text-xl tracking-tight text-forest">
-            Terratransport
+            Terratransport & Industrie mobile
           </span>
         </NavLink>
 
