@@ -5,7 +5,7 @@ const services = [
   {
     title: 'Vente de véhicules',
     desc: 'Camions bennes, autocars et véhicules particuliers, sélectionnés pour leur fiabilité et adaptés aux réalités du terrain africain et asiatique.',
-    image: '/images/camions/camion-4.jpg',
+    image: '/images/camions/camion-04.jpg',
   },
   {
     title: 'Solutions intermodales',
@@ -15,7 +15,7 @@ const services = [
   {
     title: 'Logistique personnalisée',
     desc: "De la commande à la livraison, nous concevons un parcours de transport adapté à votre activité, votre volume et vos délais.",
-    image: '/images/camions/camion-2.jpg',
+    image: '/images/camions/camion-02.jpg',
   },
 ]
 
