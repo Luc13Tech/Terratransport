@@ -1,5 +1,5 @@
 export const site = {
-  name: 'Terratransport',
+  name: 'Terratransport & Industriemobile',
   baseline: 'Votre transport, notre engagement.',
   email: 'terratransport@gmail.com',
   phoneDisplay: '+221 77 939 84 84',
