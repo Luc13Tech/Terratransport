@@ -59,7 +59,7 @@ export default function Home() {
             className="relative"
           >
             <img
-              src="/images/camions/camion-6.jpg"
+              src="/images/camions/camion-06.jpg"
               alt="Camion Terratransport"
               className="w-full h-[420px] object-cover rounded-sm shadow-2xl"
             />
