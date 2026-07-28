@@ -1,6 +1,7 @@
 export const site = {
   name: 'Terratransport & Industrie Mobile',
   shortName: 'Terratransport',
+  tagline: "Une industrie mobile pour l'exploitation minière en Afrique.",
   baseline: 'Votre transport, notre engagement.',
   email: 'terratransport@gmail.com',
   phoneDisplay: '+221 77 939 84 84',
