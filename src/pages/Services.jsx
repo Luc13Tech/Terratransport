@@ -3,23 +3,23 @@ import { Link } from 'react-router-dom'
 
 const services = [
   {
-    title: 'Vente de véhicules',
-    desc: 'Camions bennes, autocars et véhicules particuliers, sélectionnés pour leur fiabilité et adaptés aux réalités du terrain africain.',
-    image: '/images/camions/camion-04.jpg',
-  },
-  {
     title: 'Industrie mobile & exploitation minière',
-    desc: "Équipements et véhicules robustes pour les chantiers et sites miniers : engins de terrassement, camions bennes renforcés et solutions adaptées aux conditions d'exploitation les plus exigeantes.",
+    desc: "Camions bennes renforcés, engins et véhicules robustes pensés pour les sites miniers et les chantiers du continent — le cœur de notre activité : une industrie mobile fiable pour l'exploitation minière en Afrique.",
     image: '/images/camions/camion-01.jpg',
   },
   {
+    title: 'Vente de véhicules',
+    desc: 'Camions bennes, autocars et véhicules particuliers, sélectionnés pour leur fiabilité et adaptés aux réalités du terrain africain, miniers comme routiers.',
+    image: '/images/camions/camion-04.jpg',
+  },
+  {
     title: 'Solutions intermodales',
-    desc: 'Mer, rail, route : nous coordonnons chaque maillon du transport pour que votre marchandise arrive à destination sans rupture de charge.',
+    desc: 'Mer, rail, route : nous coordonnons chaque maillon du transport pour que votre matériel ou votre marchandise arrive à destination sans rupture de charge.',
     image: '/images/bus/bus-04.jpg',
   },
   {
     title: 'Logistique personnalisée',
-    desc: "De la commande à la livraison, nous concevons un parcours de transport adapté à votre activité, votre volume et vos délais, partout où votre entreprise opère en Afrique.",
+    desc: "De la commande à la livraison, nous concevons un parcours logistique adapté à votre exploitation, votre volume et vos délais, partout où votre activité opère en Afrique.",
     image: '/images/camions/camion-02.jpg',
   },
 ]
@@ -31,7 +31,7 @@ export default function Services() {
         <div className="container-tt">
           <p className="eyebrow mb-4 text-brass">Ce que nous faisons</p>
           <h1 className="font-display text-4xl md:text-5xl max-w-2xl">
-            Des services pensés pour chaque étape de votre transport.
+            Des services pensés pour l'exploitation minière et au-delà.
           </h1>
         </div>
       </section>

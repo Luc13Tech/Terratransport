@@ -22,7 +22,7 @@ export default function Home() {
               transition={{ duration: 0.7, ease: 'easeOut' }}
               className="font-display text-4xl md:text-6xl leading-[1.05] tracking-tight"
             >
-              {site.shortName}, votre partenaire du transport, de l'industrie mobile et de l'exploitation minière en Afrique.
+              {site.shortName}, {site.tagline.charAt(0).toLowerCase() + site.tagline.slice(1)}
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 16 }}
@@ -30,9 +30,10 @@ export default function Home() {
               transition={{ duration: 0.7, delay: 0.15, ease: 'easeOut' }}
               className="mt-6 text-ivory/70 text-lg max-w-md"
             >
-              Camions, autocars, véhicules et équipements industriels — vente,
-              location et solutions logistiques, au service des professionnels
-              du transport, du BTP et du secteur minier à travers le continent.
+              Camions, engins et véhicules pensés pour l'exploitation minière
+              et les chantiers du continent — vente, location et solutions
+              logistiques, au service des opérateurs miniers et industriels
+              africains.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 16 }}
@@ -87,11 +88,10 @@ export default function Home() {
             >
               <h3 className="font-display text-xl text-forest mb-3">Mission</h3>
               <p className="text-charcoal/65 text-sm leading-relaxed">
-                Fournir aux professionnels africains — transporteurs,
-                entreprises de BTP et opérateurs miniers — des véhicules et des
-                équipements fiables, ainsi qu'un accompagnement logistique de
-                bout en bout, de la sélection du matériel jusqu'à sa mise en
-                exploitation sur le terrain.
+                Mettre une industrie mobile fiable — camions, engins et
+                équipements — au service de l'exploitation minière en Afrique,
+                avec un accompagnement logistique de bout en bout, de la
+                sélection du matériel jusqu'à sa mise en exploitation sur site.
               </p>
             </motion.div>
 
@@ -103,10 +103,10 @@ export default function Home() {
             >
               <h3 className="font-display text-xl text-forest mb-3">Vision</h3>
               <p className="text-charcoal/65 text-sm leading-relaxed">
-                Devenir une référence reconnue à travers l'Afrique dans le
-                transport, l'industrie mobile et l'exploitation minière — un
-                partenaire vers qui se tournent naturellement les entreprises
-                qui ont besoin de matériel solide et d'un service qui tient ses
+                Devenir l'industrie mobile de référence pour l'exploitation
+                minière à travers le continent africain — le partenaire vers
+                qui se tournent naturellement les opérateurs miniers qui ont
+                besoin de matériel solide et d'un service qui tient ses
                 engagements.
               </p>
             </motion.div>
@@ -119,11 +119,11 @@ export default function Home() {
             >
               <h3 className="font-display text-xl text-forest mb-3">Objectifs</h3>
               <p className="text-charcoal/65 text-sm leading-relaxed">
-                Élargir notre réseau de partenaires sur le continent,
-                diversifier notre flotte de camions, autocars et équipements
-                miniers, et renforcer nos capacités de financement et
-                d'acheminement pour accompagner la croissance de nos clients,
-                pays après pays.
+                Élargir notre réseau auprès des sociétés minières du
+                continent, diversifier notre flotte de camions et
+                d'équipements dédiés à l'exploitation minière, et renforcer
+                nos capacités de financement et d'acheminement pour
+                accompagner nos clients, site après site, pays après pays.
               </p>
             </motion.div>
           </div>
@@ -139,12 +139,13 @@ export default function Home() {
             <p className="eyebrow mb-2">Départ</p>
             <h3 className="font-display text-xl mb-2">Votre demande</h3>
             <p className="text-charcoal/60 text-sm leading-relaxed">
-              Vous nous décrivez votre besoin — type de véhicule ou
-              d'équipement, volume, destination, contraintes de terrain. Que
-              vous soyez transporteur, entreprise de BTP ou opérateur minier,
-              nous prenons le temps de comprendre votre activité avant de vous
-              répondre. Aucune réponse générique : chaque demande est traitée
-              individuellement, et nous revenons vers vous rapidement.
+              Vous nous décrivez votre besoin — type de camion ou d'engin,
+              tonnage, site minier ou chantier de destination, contraintes de
+              terrain. Que vous soyez opérateur minier, entreprise de BTP ou
+              transporteur, nous prenons le temps de comprendre votre
+              exploitation avant de vous répondre. Aucune réponse générique :
+              chaque demande est traitée individuellement, et nous revenons
+              vers vous rapidement.
             </p>
           </div>
           <div className="route-line pl-8">
@@ -153,11 +154,12 @@ export default function Home() {
             <h3 className="font-display text-xl mb-2">Notre expertise</h3>
             <p className="text-charcoal/60 text-sm leading-relaxed">
               Nous sélectionnons le véhicule ou l'équipement le plus adapté à
-              votre usage réel — chantier, mine ou route longue distance —
-              puis nous structurons le financement, les formalités et
-              l'acheminement jusqu'à votre site. Notre connaissance du terrain
-              africain nous permet d'anticiper les contraintes locales plutôt
-              que de les découvrir en cours de route.
+              votre exploitation réelle — site minier, chantier ou route
+              longue distance — puis nous structurons le financement, les
+              formalités et l'acheminement jusqu'à votre site. Notre
+              connaissance du terrain minier africain nous permet
+              d'anticiper les contraintes locales plutôt que de les découvrir
+              en cours de route.
             </p>
           </div>
           <div className="route-line pl-8">
@@ -166,10 +168,10 @@ export default function Home() {
             <h3 className="font-display text-xl mb-2">Livraison</h3>
             <p className="text-charcoal/60 text-sm leading-relaxed">
               Le suivi ne s'arrête pas à la remise des clés. Nous restons
-              disponibles après la livraison du véhicule ou de la marchandise
-              pour répondre à toute question d'exploitation, où que vous
-              soyez sur le continent — c'est cette continuité qui construit
-              une vraie relation de confiance.
+              disponibles après la livraison du véhicule ou de l'équipement
+              pour répondre à toute question d'exploitation, sur site minier
+              comme sur route, où que vous soyez sur le continent — c'est
+              cette continuité qui construit une vraie relation de confiance.
             </p>
           </div>
         </div>
@@ -204,7 +206,7 @@ export default function Home() {
       <section className="container-tt py-24 text-center">
         <p className="eyebrow mb-4">Prêt à démarrer ?</p>
         <h2 className="font-display text-3xl md:text-4xl text-charcoal max-w-2xl mx-auto">
-          Parlons de votre projet de transport, d'industrie mobile ou d'exploitation minière.
+          Parlons de votre projet d'exploitation minière, de chantier ou de transport.
         </h2>
         <Link
           to="/contact"

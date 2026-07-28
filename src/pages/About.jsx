@@ -23,7 +23,7 @@ export default function About() {
         <div className="container-tt">
           <p className="eyebrow mb-4 text-brass">Qui sommes-nous</p>
           <h1 className="font-display text-4xl md:text-5xl max-w-2xl">
-            Une entreprise panafricaine du transport, de l'industrie mobile et de l'exploitation minière.
+            {site.shortName} — une industrie mobile pour l'exploitation minière en Afrique.
           </h1>
         </div>
       </section>
@@ -37,16 +37,18 @@ export default function About() {
         >
           <h2 className="font-display text-3xl text-forest mb-6">Notre mission</h2>
           <p className="text-charcoal/70 leading-relaxed mb-4">
-            {site.name} accompagne les professionnels dans l'acquisition et
-            l'exploitation de véhicules et d'équipements — camions bennes,
-            autocars, véhicules particuliers et matériel destiné à l'industrie
-            mobile et à l'exploitation minière — ainsi que dans la mise en
-            place de solutions logistiques à travers l'Afrique.
+            {site.name} met une industrie mobile fiable — camions, engins et
+            équipements — au service de l'exploitation minière en Afrique.
+            Nous accompagnons les opérateurs miniers, ainsi que les
+            entreprises de BTP et de transport, dans l'acquisition et
+            l'exploitation de leur matériel, et dans la mise en place de
+            solutions logistiques adaptées au terrain africain.
           </p>
           <p className="text-charcoal/70 leading-relaxed mb-4">
-            Notre ambition est simple : être reconnus partout où le transport,
-            le BTP et le secteur minier ont besoin d'un partenaire fiable —
-            pas seulement dans un pays, mais à l'échelle du continent.
+            Notre ambition est simple : être reconnus partout où
+            l'exploitation minière a besoin d'un partenaire fiable pour son
+            industrie mobile — pas seulement dans un pays, mais à l'échelle
+            du continent.
           </p>
           <p className="text-charcoal/70 leading-relaxed">
             Notre approche reste la même, quel que soit le projet : comprendre
