@@ -9,6 +9,7 @@ import Fleet from './pages/Fleet'
 import About from './pages/About'
 import Partners from './pages/Partners'
 import Contact from './pages/Contact'
+import RFIGuinee from './pages/RFIGuinee'
 import NotFound from './pages/NotFound'
 
 // Simple fade-in on mount, no exit animation. This avoids the "blank page"
@@ -48,6 +49,7 @@ export default function App() {
         <Route path="/a-propos" element={<PageTransition key={location.pathname}><About /></PageTransition>} />
         <Route path="/partenariats" element={<PageTransition key={location.pathname}><Partners /></PageTransition>} />
         <Route path="/contact" element={<PageTransition key={location.pathname}><Contact /></PageTransition>} />
+        <Route path="/rfi/guinee-conakry" element={<PageTransition key={location.pathname}><RFIGuinee /></PageTransition>} />
         <Route path="*" element={<PageTransition key={location.pathname}><NotFound /></PageTransition>} />
       </Routes>
       <Footer />
