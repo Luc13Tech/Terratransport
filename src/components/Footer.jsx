@@ -15,7 +15,7 @@ export default function Footer() {
             <span className="font-display text-lg text-ivory">{site.name}</span>
           </div>
           <p className="text-sm leading-relaxed text-ivory/60 max-w-xs">
-            {site.baseline} Transport, industrie mobile et exploitation minière — présents à travers l'Afrique.
+            {site.tagline} Présents à travers l'Afrique.
           </p>
         </div>
 
@@ -26,6 +26,7 @@ export default function Footer() {
             <li><Link to="/flotte" className="hover:text-brass transition-colors">Notre Flotte</Link></li>
             <li><Link to="/a-propos" className="hover:text-brass transition-colors">À propos</Link></li>
             <li><Link to="/partenariats" className="hover:text-brass transition-colors">Partenariats</Link></li>
+            <li><Link to="/rfi/guinee-conakry" className="hover:text-brass transition-colors">Projet Guinée — RFI</Link></li>
           </ul>
         </div>
 
