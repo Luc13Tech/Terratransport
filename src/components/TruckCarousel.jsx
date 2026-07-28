@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
-const images = Array.from({ length: 7 }, (_, i) => `/images/camion/camion-${String(i + 1).padStart(2, '0')}.jpg`)
+const images = Array.from({ length: 7 }, (_, i) => `/images/camions/camion-${String(i + 1).padStart(2, '0')}.jpg`)
 
 export default function TruckCarousel() {
   const [index, setIndex] = useState(0)
