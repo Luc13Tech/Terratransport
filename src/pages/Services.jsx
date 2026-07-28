@@ -5,12 +5,12 @@ const services = [
   {
     title: 'Vente de véhicules',
     desc: 'Camions bennes, autocars et véhicules particuliers, sélectionnés pour leur fiabilité et adaptés aux réalités du terrain africain.',
-    image: '/images/camion/camion-04.jpg',
+    image: '/images/camions/camion-04.jpg',
   },
   {
     title: 'Industrie mobile & exploitation minière',
     desc: "Équipements et véhicules robustes pour les chantiers et sites miniers : engins de terrassement, camions bennes renforcés et solutions adaptées aux conditions d'exploitation les plus exigeantes.",
-    image: '/images/camion/camion-01.jpg',
+    image: '/images/camions/camion-01.jpg',
   },
   {
     title: 'Solutions intermodales',
@@ -20,7 +20,7 @@ const services = [
   {
     title: 'Logistique personnalisée',
     desc: "De la commande à la livraison, nous concevons un parcours de transport adapté à votre activité, votre volume et vos délais, partout où votre entreprise opère en Afrique.",
-    image: '/images/camion/camion-02.jpg',
+    image: '/images/camions/camion-02.jpg',
   },
 ]
 
