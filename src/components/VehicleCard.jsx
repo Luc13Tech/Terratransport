@@ -9,13 +9,14 @@ export default function VehicleCard({ vehicle, index = 0 }) {
       transition={{ duration: 0.6, delay: (index % 3) * 0.08, ease: 'easeOut' }}
       className="group"
     >
-      <div className="overflow-hidden rounded-sm bg-sage/40">
+      <div className="relative overflow-hidden rounded-sm bg-sage/40 border border-forest/5">
         <img
           src={vehicle.image}
           alt={vehicle.name}
           loading="lazy"
           className="w-full h-64 object-cover transition-transform duration-700 ease-out group-hover:scale-105"
         />
+        <span className="absolute top-3 right-3 w-2 h-2 rounded-full bg-brass opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
       <div className="pt-4">
         <h3 className="font-display text-lg text-charcoal">{vehicle.name}</h3>

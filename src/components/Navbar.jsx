@@ -28,8 +28,10 @@ export default function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-colors duration-300 ${
-        scrolled ? 'bg-ivory/90 backdrop-blur-sm shadow-sm' : 'bg-transparent'
+      className={`sticky top-0 z-50 transition-all duration-300 border-b ${
+        scrolled
+          ? 'bg-ivory/85 backdrop-blur-md shadow-sm border-forest/10'
+          : 'bg-ivory/40 backdrop-blur-sm border-transparent'
       }`}
     >
       <nav className="container-tt flex items-center justify-between py-4">
@@ -55,12 +57,23 @@ export default function Navbar() {
               key={l.to}
               to={l.to}
               className={({ isActive }) =>
-                `font-body text-sm tracking-wide transition-colors ${
+                `relative py-1 font-body text-sm tracking-wide transition-colors ${
                   isActive ? 'text-forest font-medium' : 'text-charcoal/70 hover:text-forest'
                 }`
               }
             >
-              {l.label}
+              {({ isActive }) => (
+                <>
+                  {l.label}
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-underline"
+                      className="absolute -bottom-1 left-0 right-0 h-px bg-brass"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </>
+              )}
             </NavLink>
           ))}
           <NavLink
