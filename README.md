@@ -10,6 +10,8 @@ autocars et véhicules, solutions de transport intermodal Afrique ⇄ Asie.
 - Tailwind CSS (design system : voir `tailwind.config.js`)
 - Framer Motion (animations et transitions de page)
 - React Hook Form (formulaire de contact)
+- Three.js + @react-three/fiber + @react-three/drei (scène 3D du hero : réseau panafricain animé)
+- lucide-react (icônes)
 
 ## Installation locale
 
