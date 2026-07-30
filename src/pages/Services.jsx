@@ -1,26 +1,31 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { Mountain, Truck, Ship, Route } from 'lucide-react'
 
 const services = [
   {
     title: 'Industrie mobile & exploitation minière',
     desc: "Camions bennes renforcés, engins et véhicules robustes pensés pour les sites miniers et les chantiers du continent — le cœur de notre activité : une industrie mobile fiable pour l'exploitation minière en Afrique.",
     image: '/images/camions/camion-01.jpg',
+    Icon: Mountain,
   },
   {
     title: 'Vente de véhicules',
     desc: 'Camions bennes, autocars et véhicules particuliers, sélectionnés pour leur fiabilité et adaptés aux réalités du terrain africain, miniers comme routiers.',
     image: '/images/camions/camion-04.jpg',
+    Icon: Truck,
   },
   {
     title: 'Solutions intermodales',
     desc: 'Mer, rail, route : nous coordonnons chaque maillon du transport pour que votre matériel ou votre marchandise arrive à destination sans rupture de charge.',
     image: '/images/bus/bus-04.jpg',
+    Icon: Ship,
   },
   {
     title: 'Logistique personnalisée',
     desc: "De la commande à la livraison, nous concevons un parcours logistique adapté à votre exploitation, votre volume et vos délais, partout où votre activité opère en Afrique.",
     image: '/images/camions/camion-02.jpg',
+    Icon: Route,
   },
 ]
 
@@ -54,9 +59,9 @@ export default function Services() {
               className="w-full h-80 object-cover rounded-sm shadow-lg"
             />
             <div>
-              <p className="font-mono text-xs tracking-widest2 text-brass mb-3">
-                0{i + 1}
-              </p>
+              <div className="w-11 h-11 rounded-full bg-forest/5 border border-forest/15 flex items-center justify-center mb-5">
+                <s.Icon size={19} strokeWidth={1.5} className="text-brass" />
+              </div>
               <h2 className="font-display text-3xl text-forest mb-4">{s.title}</h2>
               <p className="text-charcoal/70 leading-relaxed">{s.desc}</p>
             </div>

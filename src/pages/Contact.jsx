@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { motion } from 'framer-motion'
+import { Phone, Mail } from 'lucide-react'
 import { site, buildWhatsappLink } from '../data/site'
 import { categories } from '../data/vehicles'
 
@@ -31,13 +32,19 @@ export default function Contact() {
         <div className="md:col-span-2">
           <p className="eyebrow mb-4">Coordonnées directes</p>
           <div className="space-y-6">
-            <div>
-              <p className="text-charcoal/50 text-sm mb-1">Téléphone / WhatsApp</p>
-              <p className="font-display text-xl text-forest">{site.phoneDisplay}</p>
+            <div className="flex items-start gap-3">
+              <Phone size={18} strokeWidth={1.5} className="text-brass mt-1 shrink-0" />
+              <div>
+                <p className="text-charcoal/50 text-sm mb-1">Téléphone / WhatsApp</p>
+                <p className="font-display text-xl text-forest">{site.phoneDisplay}</p>
+              </div>
             </div>
-            <div>
-              <p className="text-charcoal/50 text-sm mb-1">Email</p>
-              <p className="font-display text-xl text-forest">{site.email}</p>
+            <div className="flex items-start gap-3">
+              <Mail size={18} strokeWidth={1.5} className="text-brass mt-1 shrink-0" />
+              <div>
+                <p className="text-charcoal/50 text-sm mb-1">Email</p>
+                <p className="font-display text-xl text-forest">{site.email}</p>
+              </div>
             </div>
           </div>
           <p className="mt-10 text-sm text-charcoal/50 leading-relaxed max-w-sm">

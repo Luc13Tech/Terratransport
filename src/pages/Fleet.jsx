@@ -23,31 +23,40 @@ export default function Fleet() {
       </section>
 
       <section className="container-tt py-16">
-        <div className="flex flex-wrap gap-3 mb-12">
+        <div className="flex flex-wrap items-center gap-3 mb-4">
           <button
             onClick={() => setActive('tous')}
-            className={`px-5 py-2 rounded-full text-sm tracking-wide border transition-colors ${
+            className={`relative px-5 py-2 rounded-full text-sm tracking-wide border transition-colors ${
               active === 'tous'
-                ? 'bg-forest text-ivory border-forest'
+                ? 'text-ivory border-forest'
                 : 'border-charcoal/20 text-charcoal/70 hover:border-forest'
             }`}
           >
+            {active === 'tous' && (
+              <motion.span layoutId="fleet-pill" className="absolute inset-0 bg-forest rounded-full -z-10" transition={{ type: 'spring', stiffness: 400, damping: 32 }} />
+            )}
             Tous
           </button>
           {categories.map((c) => (
             <button
               key={c.slug}
               onClick={() => setActive(c.slug)}
-              className={`px-5 py-2 rounded-full text-sm tracking-wide border transition-colors ${
+              className={`relative px-5 py-2 rounded-full text-sm tracking-wide border transition-colors ${
                 active === c.slug
-                  ? 'bg-forest text-ivory border-forest'
+                  ? 'text-ivory border-forest'
                   : 'border-charcoal/20 text-charcoal/70 hover:border-forest'
               }`}
             >
+              {active === c.slug && (
+                <motion.span layoutId="fleet-pill" className="absolute inset-0 bg-forest rounded-full -z-10" transition={{ type: 'spring', stiffness: 400, damping: 32 }} />
+              )}
               {c.label}
             </button>
           ))}
         </div>
+        <p className="font-mono text-xs tracking-wide text-charcoal/40 mb-10">
+          {filtered.length} véhicule{filtered.length > 1 ? 's' : ''}
+        </p>
 
         {filtered.length > 0 ? (
           <motion.div

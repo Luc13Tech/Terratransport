@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 
-const partners = ['Sinotruk', 'Shacman', 'Yutong', 'HOWO','IVECO']
+const partners = ['Sinotruk', 'Shacman', 'Yutong', 'HOWO']
 
 export default function Partners() {
   return (
@@ -29,7 +29,7 @@ export default function Partners() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="border border-charcoal/10 rounded-sm py-10 flex items-center justify-center hover:border-brass transition-colors"
+              className="border border-charcoal/10 rounded-sm py-10 flex items-center justify-center hover:border-brass hover:-translate-y-1 hover:shadow-md transition-all duration-300"
             >
               <span className="font-display text-xl md:text-2xl text-forest tracking-tight">
                 {p}

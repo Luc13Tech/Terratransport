@@ -5,16 +5,22 @@ import VehicleCard from '../components/VehicleCard'
 import TruckCarousel from '../components/TruckCarousel'
 import { RouteThread } from '../components/RouteLine'
 import { site } from '../data/site'
+import AfricaNetwork from '../three/AfricaNetwork'
 
 const featured = [vehicles[0], vehicles[8], vehicles[5], vehicles[10]]
 
 export default function Home() {
   return (
     <>
-      {/* HERO */}
+      {/* HERO — signature 3D network as the visual thesis */}
       <section className="relative overflow-hidden bg-forest text-ivory">
-        <div className="container-tt py-28 md:py-36 grid md:grid-cols-2 gap-12 items-center">
-          <div>
+        <div className="absolute inset-0 pointer-events-none opacity-90">
+          <AfricaNetwork className="w-full h-full" />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-forest via-forest/85 to-transparent md:via-forest/40" />
+
+        <div className="container-tt relative py-28 md:py-40">
+          <div className="max-w-xl">
             <p className="eyebrow mb-6 text-brass">Présence panafricaine</p>
             <motion.h1
               initial={{ opacity: 0, y: 16 }}
@@ -55,36 +61,37 @@ export default function Home() {
               </Link>
             </motion.div>
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="relative"
-          >
-            <TruckCarousel />
-            <div className="absolute -bottom-6 -left-6 hidden md:block bg-ivory text-charcoal px-6 py-4 rounded-sm shadow-xl">
-              <p className="eyebrow mb-1">Engagement</p>
-              <p className="font-display text-lg">Fiabilité de bout en bout</p>
-            </div>
-          </motion.div>
         </div>
       </section>
 
+      {/* FILMSTRIP — the fleet in motion, right under the hero */}
+      <section className="bg-charcoal">
+        <div className="flex items-center justify-between container-tt py-4">
+          <p className="font-mono text-[10px] tracking-widest2 uppercase text-brass/80">
+            Notre flotte en mouvement
+          </p>
+          <p className="font-mono text-[10px] tracking-widest2 uppercase text-ivory/30 hidden sm:block">
+            Fiabilité de bout en bout
+          </p>
+        </div>
+        <TruckCarousel heightClass="h-56 md:h-72" />
+      </section>
+
       {/* MISSION / VISION / OBJECTIFS */}
-      <section className="bg-ivory py-24 border-b border-forest/10">
+      <section className="bg-ivory py-24">
         <div className="container-tt">
           <p className="eyebrow mb-3">Notre entreprise</p>
           <h2 className="font-display text-3xl md:text-4xl text-forest max-w-2xl mb-14">
             Une ambition panafricaine, un engagement concret.
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-12">
+          <div className="grid md:grid-cols-3">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
+              className="md:pr-10 md:border-r border-forest/10 pb-10 md:pb-0"
             >
               <h3 className="font-display text-xl text-forest mb-3">Mission</h3>
               <p className="text-charcoal/65 text-sm leading-relaxed">
@@ -100,6 +107,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
+              className="md:px-10 md:border-r border-forest/10 py-10 md:py-0"
             >
               <h3 className="font-display text-xl text-forest mb-3">Vision</h3>
               <p className="text-charcoal/65 text-sm leading-relaxed">
@@ -116,6 +124,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
+              className="md:pl-10 pt-10 md:pt-0"
             >
               <h3 className="font-display text-xl text-forest mb-3">Objectifs</h3>
               <p className="text-charcoal/65 text-sm leading-relaxed">
@@ -130,7 +139,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PARCOURS / ROUTE (signature element) */}
+      {/* PARCOURS / ROUTE (signature 2D element — a genuine sequence) */}
       <section className="container-tt py-24 relative">
         <RouteThread />
         <div className="grid md:grid-cols-3 gap-12 relative">
@@ -203,17 +212,19 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="container-tt py-24 text-center">
-        <p className="eyebrow mb-4">Prêt à démarrer ?</p>
-        <h2 className="font-display text-3xl md:text-4xl text-charcoal max-w-2xl mx-auto">
-          Parlons de votre projet d'exploitation minière, de chantier ou de transport.
-        </h2>
-        <Link
-          to="/contact"
-          className="inline-block mt-8 rounded-full bg-forest text-ivory px-8 py-3 text-sm tracking-wide hover:bg-forest-light transition-colors"
-        >
-          Faire une demande
-        </Link>
+      <section className="relative bg-forest text-ivory py-24 text-center overflow-hidden">
+        <div className="container-tt relative">
+          <p className="eyebrow mb-4 text-brass">Prêt à démarrer ?</p>
+          <h2 className="font-display text-3xl md:text-4xl max-w-2xl mx-auto">
+            Parlons de votre projet d'exploitation minière, de chantier ou de transport.
+          </h2>
+          <Link
+            to="/contact"
+            className="inline-block mt-8 rounded-full bg-brass text-charcoal px-8 py-3 text-sm tracking-wide hover:bg-brass-light transition-colors"
+          >
+            Faire une demande
+          </Link>
+        </div>
       </section>
     </>
   )

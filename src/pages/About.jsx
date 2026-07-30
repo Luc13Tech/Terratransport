@@ -1,18 +1,22 @@
 import { motion } from 'framer-motion'
+import { Zap, Globe2, ClipboardCheck } from 'lucide-react'
 import { site } from '../data/site'
 
 const values = [
   {
     title: 'Réactivité',
     desc: 'Une demande, une réponse rapide — sans intermédiaire superflu.',
+    Icon: Zap,
   },
   {
     title: 'Réseau',
     desc: 'Un ancrage panafricain, pensé pour accompagner nos clients où que leur activité les mène sur le continent.',
+    Icon: Globe2,
   },
   {
     title: 'Traçabilité',
     desc: 'Un suivi clair de votre commande, du premier échange à la livraison.',
+    Icon: ClipboardCheck,
   },
 ]
 
@@ -80,6 +84,9 @@ export default function About() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
               >
+                <div className="w-11 h-11 rounded-full bg-forest/5 border border-forest/15 flex items-center justify-center mb-4">
+                  <v.Icon size={19} strokeWidth={1.5} className="text-brass" />
+                </div>
                 <h3 className="font-display text-xl text-forest mb-2">{v.title}</h3>
                 <p className="text-charcoal/60 text-sm leading-relaxed">{v.desc}</p>
               </motion.div>
