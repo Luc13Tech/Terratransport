@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 
-const partners = ['Sinotruk', 'Shacman', 'Yutong', 'HOWO', 'IVECO']
+const partners = ['Sinotruk', 'Shacman', 'Yutong', 'HOWO', 'Sinotruk', 'IVECO']
 
 export default function Partners() {
   return (
