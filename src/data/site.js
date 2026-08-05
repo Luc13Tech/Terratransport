@@ -3,7 +3,7 @@ export const site = {
   shortName: 'Terratransport',
   tagline: "Une industrie mobile pour l'exploitation minière en Afrique.",
   baseline: 'Votre transport, notre engagement.',
-  email: 'terratransport@gmail.com',
+  email: 'contact@terratransport-sa.com',
   phoneDisplay: '+221 77 939 84 84',
   // wa.me requires digits only, no + or spaces
   whatsappNumber: '221779398484',
