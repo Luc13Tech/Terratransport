@@ -41,7 +41,7 @@ export default function Partners() {
         <div className="mt-20 border-t border-charcoal/10 pt-14">
           <p className="eyebrow mb-4">Devenir partenaire</p>
           <h2 className="font-display text-2xl text-forest mb-4">
-            Revendeur ou transporteur affilié
+            Revendeur ou transporteur affilié.
           </h2>
           <p className="text-charcoal/60 max-w-xl leading-relaxed">
             Vous représentez une flotte ou un réseau de distribution ? Parlons
