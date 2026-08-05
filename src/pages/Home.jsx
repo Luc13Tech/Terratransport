@@ -128,11 +128,7 @@ export default function Home() {
             >
               <h3 className="font-display text-xl text-forest mb-3">Objectifs</h3>
               <p className="text-charcoal/65 text-sm leading-relaxed">
-                Élargir notre réseau auprès des sociétés minières du
-                continent, diversifier notre flotte de camions et
-                d'équipements dédiés à l'exploitation minière, et renforcer
-                nos capacités de financement et d'acheminement pour
-                accompagner nos clients, site après site, pays après pays.
+                Développer une présence durable auprès des sociétés minières à travers l'Afrique en proposant des solutions intégrées de transport, de location d'équipements et de logistique. Renforcer et diversifier notre flotte de camions et d'engins spécialisés. Devenir une entreprise d'accompagnement fiable et incontournable pour nos partenaires sur l'ensemble de la chaîne logistique d'exploitation minière . Notre ambition est de devenir un partenaire stratégique de référence pour les opérateurs miniers du continent.
               </p>
             </motion.div>
           </div>
