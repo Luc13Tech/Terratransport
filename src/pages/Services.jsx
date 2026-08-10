@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { Mountain, Truck, Ship, Route } from 'lucide-react'
+import { Mountain, Truck, Ship, Route, Fuel } from 'lucide-react'
 
 const services = [
   {
@@ -8,6 +8,14 @@ const services = [
     desc: "Camions bennes renforcés, engins et véhicules robustes pensés pour les sites miniers et les chantiers du continent — le cœur de notre activité : une industrie mobile fiable pour l'exploitation minière en Afrique.",
     image: '/images/camions/camion-01.jpg',
     Icon: Mountain,
+  },
+  {
+    title: "Transport d'hydrocarbures",
+    desc: "Camions citernes spécialisés — essence, gasoil, kérosène — conçus autour de trois exigences : sécurité renforcée, fiabilité opérationnelle et grands volumes sur des trajets exigeants en Afrique de l'Ouest.",
+    image: '/images/citernes/citerne-01.jpg',
+    Icon: Fuel,
+    link: '/hydrocarbures',
+    linkLabel: 'Voir le dossier technique',
   },
   {
     title: 'Vente de véhicules',
@@ -64,6 +72,14 @@ export default function Services() {
               </div>
               <h2 className="font-display text-3xl text-forest mb-4">{s.title}</h2>
               <p className="text-charcoal/70 leading-relaxed">{s.desc}</p>
+              {s.link && (
+                <Link
+                  to={s.link}
+                  className="inline-block mt-5 text-sm tracking-wide text-forest border-b border-forest/30 hover:border-forest pb-1"
+                >
+                  {s.linkLabel} →
+                </Link>
+              )}
             </div>
           </motion.div>
         ))}
