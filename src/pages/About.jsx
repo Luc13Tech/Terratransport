@@ -117,7 +117,7 @@ export default function About() {
             className="space-y-4"
           >
             <img
-              src="/images/bus/bus-03.jpg"
+              src="/images/citernes/citerne-05.jpg"
               alt={site.name}
               className="w-full h-64 object-cover rounded-sm shadow-lg"
             />
