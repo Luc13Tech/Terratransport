@@ -74,13 +74,6 @@ export const vehicles = [
     specs: ['Benne', 'Flotte Terratransport'],
   },
   {
-    id: 'camion-7',
-    category: 'camions',
-    name: 'Sinotruk Howo — Benne (vue arrière)',
-    image: '/images/camions/camion-07.jpg',
-    specs: ['Benne', 'Flotte Terratransport'],
-  },
-  {
     id: 'camion-8',
     category: 'camions',
     name: 'Sinotruk Howo — Benne acier',
