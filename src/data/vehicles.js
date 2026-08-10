@@ -9,6 +9,11 @@ export const categories = [
     tagline: 'Robustesse et charge utile pour vos chantiers et exploitations.',
   },
   {
+    slug: 'citernes',
+    label: 'Camions citernes',
+    tagline: "Transport sécurisé d'hydrocarbures — essence, gasoil, kérosène.",
+  },
+  {
     slug: 'bus',
     label: 'Autocars',
     tagline: 'Transport de passagers confortable, longue distance ou navette.',
@@ -179,6 +184,34 @@ export const vehicles = [
     name: 'Camion Terratransport — Modèle 22',
     image: '/images/camions/camion-22.jpg',
     specs: ['Benne', 'Flotte Terratransport'],
+  },
+  {
+    id: 'citerne-01',
+    category: 'citernes',
+    name: 'Camion citerne hydrocarbure — 35 000 L',
+    image: '/images/citernes/citerne-01.jpg',
+    specs: ['35 000 L', '8x4', 'Diesel', 'Euro 3 / Euro 5'],
+  },
+  {
+    id: 'citerne-02',
+    category: 'citernes',
+    name: 'Camion citerne hydrocarbure — 24 000 L / 10 T',
+    image: '/images/citernes/citerne-02.jpg',
+    specs: ['24 000 L', '10 T', '8x4', 'Euro 3 / Euro 5'],
+  },
+  {
+    id: 'citerne-03',
+    category: 'citernes',
+    name: 'Camion citerne hydrocarbure — 22 000 L / 10 T',
+    image: '/images/citernes/citerne-03.jpg',
+    specs: ['22 000 L', '10 T', '6x4 · 12 roues', 'Euro 3 / Euro 5'],
+  },
+  {
+    id: 'citerne-04',
+    category: 'citernes',
+    name: 'Camion citerne hydrocarbure — 45 000 L / 13 T',
+    image: '/images/citernes/citerne-04.jpg',
+    specs: ['45 000 L', '13 T', '8x4', 'Euro 3 / Euro 5'],
   },
   {
     id: 'bus-01',
