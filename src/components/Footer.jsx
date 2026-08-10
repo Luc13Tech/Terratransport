@@ -26,6 +26,7 @@ export default function Footer() {
             <li><Link to="/flotte" className="hover:text-brass transition-colors">Notre Flotte</Link></li>
             <li><Link to="/a-propos" className="hover:text-brass transition-colors">À propos</Link></li>
             <li><Link to="/partenariats" className="hover:text-brass transition-colors">Partenariats</Link></li>
+            <li><Link to="/hydrocarbures" className="hover:text-brass transition-colors">Transport d'hydrocarbures</Link></li>
             <li><Link to="/rfi/guinee-conakry" className="hover:text-brass transition-colors">Projet Guinée — RFI</Link></li>
           </ul>
         </div>
