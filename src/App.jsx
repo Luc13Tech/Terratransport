@@ -1,6 +1,7 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useEffect } from 'react'
+import { AuthProvider } from './context/AuthContext'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
@@ -13,9 +14,12 @@ import RFIGuinee from './pages/RFIGuinee'
 import Hydrocarbures from './pages/Hydrocarbures'
 import NotFound from './pages/NotFound'
 
-// Simple fade-in on mount, no exit animation. This avoids the "blank page"
-// gap that can occur with AnimatePresence's mode="wait" when a page is
-// waiting for the previous one to finish animating out before it mounts.
+import AdminLogin from './admin/pages/AdminLogin'
+import AdminVehicles from './admin/pages/AdminVehicles'
+import AdminServices from './admin/pages/AdminServices'
+import AdminContent from './admin/pages/AdminContent'
+import ProtectedRoute from './admin/components/ProtectedRoute'
+
 function PageTransition({ children }) {
   return (
     <motion.main
@@ -36,9 +40,8 @@ function ScrollToTop() {
   return null
 }
 
-export default function App() {
+function PublicSite() {
   const location = useLocation()
-
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
@@ -56,5 +59,25 @@ export default function App() {
       </Routes>
       <Footer />
     </div>
+  )
+}
+
+export default function App() {
+  const location = useLocation()
+  const isAdminRoute = location.pathname.startsWith('/admin')
+
+  return (
+    <AuthProvider>
+      {isAdminRoute ? (
+        <Routes>
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin" element={<ProtectedRoute><AdminVehicles /></ProtectedRoute>} />
+          <Route path="/admin/services" element={<ProtectedRoute><AdminServices /></ProtectedRoute>} />
+          <Route path="/admin/contenu" element={<ProtectedRoute><AdminContent /></ProtectedRoute>} />
+        </Routes>
+      ) : (
+        <PublicSite />
+      )}
+    </AuthProvider>
   )
 }
