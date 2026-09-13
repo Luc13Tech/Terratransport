@@ -22,9 +22,6 @@ html {
   color: #F7F5EE;
 }
 
-/* Signature element: the route line — a thin thread that runs the length of
-   a section, marking waypoints (Départ / Transit / Arrivée) the way a real
-   shipping or trucking route would be plotted on a map. */
 .route-line {
   position: relative;
 }
@@ -70,7 +67,6 @@ html {
   }
 }
 
-/* visible focus ring for accessibility */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
