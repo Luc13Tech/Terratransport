@@ -1,15 +1,44 @@
-import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { vehicles } from '../data/vehicles'
+import { ArrowRight } from 'lucide-react'
 import VehicleCard from '../components/VehicleCard'
 import TruckCarousel from '../components/TruckCarousel'
 import { RouteThread } from '../components/RouteLine'
+import { CardSkeleton, ErrorNotice } from '../components/LoadingStates'
+import SectionDivider from '../components/decor/SectionDivider'
+import Button from '../components/ui/Button'
 import { site } from '../data/site'
+import { api } from '../lib/api'
 import AfricaNetwork from '../three/AfricaNetwork'
 
-const featured = [vehicles[0], vehicles[8], vehicles[5], vehicles[10]]
-
 export default function Home() {
+  const [featured, setFeatured] = useState(null)
+  const [error, setError] = useState(null)
+
+  useEffect(() => {
+    let cancelled = false
+    api.vehicles
+      .list()
+      .then((all) => {
+        if (cancelled) return
+        const byCategory = {}
+        for (const v of all) {
+          if (!byCategory[v.category]) byCategory[v.category] = []
+          byCategory[v.category].push(v)
+        }
+        const picks = []
+        for (const cat of ['camions', 'bus', 'citernes', 'semi-remorques', 'vehicules']) {
+          if (byCategory[cat]?.[0]) picks.push(byCategory[cat][0])
+          if (picks.length >= 4) break
+        }
+        setFeatured(picks.length > 0 ? picks : all.slice(0, 4))
+      })
+      .catch((err) => !cancelled && setError(err.message))
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
   return (
     <>
       {/* HERO — signature 3D network as the visual thesis */}
@@ -47,18 +76,12 @@ export default function Home() {
               transition={{ duration: 0.7, delay: 0.3, ease: 'easeOut' }}
               className="mt-10 flex flex-wrap gap-4"
             >
-              <Link
-                to="/contact"
-                className="rounded-full bg-brass text-charcoal px-7 py-3 text-sm tracking-wide hover:bg-brass-light transition-colors"
-              >
+              <Button to="/contact" variant="accent" size="lg">
                 Demander un devis
-              </Link>
-              <Link
-                to="/flotte"
-                className="rounded-full border border-ivory/30 px-7 py-3 text-sm tracking-wide hover:border-brass hover:text-brass transition-colors"
-              >
+              </Button>
+              <Button to="/flotte" variant="outlineLight" size="lg" icon={ArrowRight}>
                 Découvrir la flotte
-              </Link>
+              </Button>
             </motion.div>
           </div>
         </div>
@@ -76,9 +99,10 @@ export default function Home() {
         </div>
         <TruckCarousel heightClass="h-56 md:h-72" />
       </section>
+      <SectionDivider from="#181816" to="#F7F5EE" />
 
       {/* MISSION / VISION / OBJECTIFS */}
-      <section className="bg-ivory py-24">
+      <section className="bg-ivory pt-4 pb-24">
         <div className="container-tt">
           <p className="eyebrow mb-3">Notre entreprise</p>
           <h2 className="font-display text-3xl md:text-4xl text-forest max-w-2xl mb-14">
@@ -128,7 +152,11 @@ export default function Home() {
             >
               <h3 className="font-display text-xl text-forest mb-3">Objectifs</h3>
               <p className="text-charcoal/65 text-sm leading-relaxed">
-                Développer une présence durable auprès des sociétés minières à travers l'Afrique en proposant des solutions intégrées de transport, de location d'équipements et de logistique. Renforcer et diversifier notre flotte de camions et d'engins spécialisés. Devenir une entreprise d'accompagnement fiable et incontournable pour nos partenaires sur l'ensemble de la chaîne logistique d'exploitation minière . Notre ambition est de devenir un partenaire stratégique de référence pour les opérateurs miniers du continent.
+                Élargir notre réseau auprès des sociétés minières du
+                continent, diversifier notre flotte de camions et
+                d'équipements dédiés à l'exploitation minière, et renforcer
+                nos capacités de financement et d'acheminement pour
+                accompagner nos clients, site après site, pays après pays.
               </p>
             </motion.div>
           </div>
@@ -182,8 +210,10 @@ export default function Home() {
         </div>
       </section>
 
+      <SectionDivider from="#F7F5EE" to="#EDF1EC" />
+
       {/* FLEET PREVIEW */}
-      <section className="bg-sage/30 py-24">
+      <section className="bg-sage/30 pt-4 pb-24">
         <div className="container-tt">
           <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
             <div>
@@ -192,34 +222,37 @@ export default function Home() {
                 Une sélection, pas un catalogue.
               </h2>
             </div>
-            <Link
-              to="/flotte"
-              className="text-sm tracking-wide text-forest border-b border-forest/30 hover:border-forest pb-1"
-            >
-              Voir toute la flotte →
-            </Link>
+            <Button to="/flotte" variant="ghost" size="sm" icon={ArrowRight}>
+              Voir toute la flotte
+            </Button>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {featured.map((v, i) => (
-              <VehicleCard key={v.id} vehicle={v} index={i} />
-            ))}
-          </div>
+
+          {error && <ErrorNotice message="Impossible de charger la flotte pour le moment." />}
+          {!error && !featured && <CardSkeleton count={4} />}
+          {!error && featured && (
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {featured.map((v, i) => (
+                <VehicleCard key={v._id} vehicle={v} index={i} />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
+      <SectionDivider from="#EDF1EC" to="#0F3D2E" />
+
       {/* CTA */}
-      <section className="relative bg-forest text-ivory py-24 text-center overflow-hidden">
+      <section className="relative bg-forest text-ivory pt-4 pb-24 text-center overflow-hidden">
         <div className="container-tt relative">
           <p className="eyebrow mb-4 text-brass">Prêt à démarrer ?</p>
           <h2 className="font-display text-3xl md:text-4xl max-w-2xl mx-auto">
             Parlons de votre projet d'exploitation minière, de chantier ou de transport.
           </h2>
-          <Link
-            to="/contact"
-            className="inline-block mt-8 rounded-full bg-brass text-charcoal px-8 py-3 text-sm tracking-wide hover:bg-brass-light transition-colors"
-          >
-            Faire une demande
-          </Link>
+          <div className="mt-8 flex justify-center">
+            <Button to="/contact" variant="accent" size="lg">
+              Faire une demande
+            </Button>
+          </div>
         </div>
       </section>
     </>

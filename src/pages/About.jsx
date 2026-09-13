@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Zap, Globe2, ClipboardCheck, Fuel, Shield, Eye } from 'lucide-react'
 import MineralField from '../components/decor/MineralField'
+import SectionDivider from '../components/decor/SectionDivider'
 import { site } from '../data/site'
 
 const values = [
@@ -23,6 +24,7 @@ export default function About() {
           </h1>
         </div>
       </section>
+      <SectionDivider from="#0F3D2E" to="#F7F5EE" />
 
       <section className="container-tt py-20 grid md:grid-cols-2 gap-16 items-start">
         <motion.div
@@ -58,6 +60,7 @@ export default function About() {
           className="w-full h-80 object-cover rounded-sm shadow-lg"
         />
       </section>
+      <SectionDivider from="#F7F5EE" to="#EDF1EC" />
 
       <section className="bg-sage/30 py-20">
         <div className="container-tt grid md:grid-cols-2 gap-16 items-start">
@@ -132,6 +135,7 @@ export default function About() {
           </motion.div>
         </div>
       </section>
+      <SectionDivider from="#EDF1EC" to="#F7F5EE" />
 
       <section className="container-tt py-20">
         <motion.div
@@ -165,6 +169,7 @@ export default function About() {
           </p>
         </motion.div>
       </section>
+      <SectionDivider from="#F7F5EE" to="#0F3D2E" />
 
       <section className="relative overflow-hidden bg-forest text-ivory py-20">
         <MineralField />
@@ -194,6 +199,7 @@ export default function About() {
           </motion.div>
         </div>
       </section>
+      <SectionDivider from="#0F3D2E" to="#EDF1EC" />
 
       <section className="bg-sage/30 py-20">
         <div className="container-tt">

@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
 import { site } from '../data/site'
 import RouteLines from '../components/decor/RouteLines'
+import SectionDivider from '../components/decor/SectionDivider'
+import Button from '../components/ui/Button'
 
 const sections = [
   {
@@ -202,6 +203,7 @@ export default function RFIGuinee() {
           ))}
         </div>
       </section>
+      <SectionDivider from="#F7F5EE" to="#EDF1EC" />
 
       <section className="bg-sage/30 py-20">
         <div className="container-tt max-w-2xl">
@@ -224,12 +226,9 @@ export default function RFIGuinee() {
             Nous vous remercions par avance de votre collaboration et restons
             à votre entière disposition pour tout complément d'information.
           </p>
-          <Link
-            to="/contact"
-            className="inline-block rounded-full bg-forest text-ivory px-8 py-3 text-sm tracking-wide hover:bg-forest-light transition-colors"
-          >
+          <Button to="/contact" variant="primary" size="lg">
             Nous transmettre vos informations
-          </Link>
+          </Button>
         </div>
       </section>
     </>

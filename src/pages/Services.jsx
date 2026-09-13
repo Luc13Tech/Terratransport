@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
-import { Mountain, Truck, Ship, Route, Fuel, Package } from 'lucide-react'
+import { Mountain, Truck, Ship, Route, Fuel, Package, ArrowRight } from 'lucide-react'
 import { CardSkeleton, WakingUpNotice, ErrorNotice } from '../components/LoadingStates'
 import RouteLines from '../components/decor/RouteLines'
+import SectionDivider from '../components/decor/SectionDivider'
+import Button from '../components/ui/Button'
 import { api } from '../lib/api'
 
 // Correspondance entre le nom d'icône stocké en base (texte simple, éditable
@@ -84,12 +85,11 @@ export default function Services() {
                   <h2 className="font-display text-3xl text-forest mb-4">{s.title}</h2>
                   <p className="text-charcoal/70 leading-relaxed">{s.description}</p>
                   {s.link && (
-                    <Link
-                      to={s.link}
-                      className="inline-block mt-5 text-sm tracking-wide text-forest border-b border-forest/30 hover:border-forest pb-1"
-                    >
-                      {s.linkLabel || 'En savoir plus'} →
-                    </Link>
+                    <div className="mt-5">
+                      <Button to={s.link} variant="ghost" size="sm" icon={ArrowRight}>
+                        {s.linkLabel || 'En savoir plus'}
+                      </Button>
+                    </div>
                   )}
                 </div>
               </motion.div>
@@ -98,16 +98,15 @@ export default function Services() {
         )}
       </section>
 
-      <section className="bg-sage/30 py-20 text-center">
+      <SectionDivider from="#F7F5EE" to="#EDF1EC" />
+
+      <section className="bg-sage/30 pt-4 pb-20 text-center">
         <h2 className="font-display text-3xl text-charcoal mb-6">
           Un besoin spécifique ?
         </h2>
-        <Link
-          to="/contact"
-          className="inline-block rounded-full bg-forest text-ivory px-8 py-3 text-sm tracking-wide hover:bg-forest-light transition-colors"
-        >
+        <Button to="/contact" variant="primary" size="lg">
           Discutons-en
-        </Link>
+        </Button>
       </section>
     </>
   )

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import Button from '../components/ui/Button'
 
 export default function NotFound() {
   return (
@@ -11,12 +11,9 @@ export default function NotFound() {
         La page que vous cherchez a peut-être changé d'adresse. Repartons de
         l'accueil.
       </p>
-      <Link
-        to="/"
-        className="rounded-full bg-forest text-ivory px-7 py-3 text-sm tracking-wide hover:bg-forest-light transition-colors"
-      >
+      <Button to="/" variant="primary" size="md">
         Retour à l'accueil
-      </Link>
+      </Button>
     </section>
   )
 }

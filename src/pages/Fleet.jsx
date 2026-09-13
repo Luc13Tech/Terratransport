@@ -4,6 +4,7 @@ import { categories } from '../data/vehicles'
 import VehicleCard from '../components/VehicleCard'
 import { CardSkeleton, WakingUpNotice, ErrorNotice } from '../components/LoadingStates'
 import HexagonField from '../components/decor/HexagonField'
+import SectionDivider from '../components/decor/SectionDivider'
 import { api } from '../lib/api'
 
 export default function Fleet() {
@@ -51,10 +52,13 @@ export default function Fleet() {
           </h1>
         </div>
       </section>
+      <SectionDivider from="#0F3D2E" to="#F7F5EE" />
 
       <section className="container-tt py-16">
         <div className="flex flex-wrap items-center gap-3 mb-4">
-          <button
+          <motion.button
+            whileHover={{ y: -1 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => setActive('tous')}
             className={`relative px-5 py-2 rounded-full text-sm tracking-wide border transition-colors ${
               active === 'tous'
@@ -66,10 +70,12 @@ export default function Fleet() {
               <motion.span layoutId="fleet-pill" className="absolute inset-0 bg-forest rounded-full -z-10" transition={{ type: 'spring', stiffness: 400, damping: 32 }} />
             )}
             Tous
-          </button>
+          </motion.button>
           {categories.map((c) => (
-            <button
+            <motion.button
               key={c.slug}
+              whileHover={{ y: -1 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => setActive(c.slug)}
               className={`relative px-5 py-2 rounded-full text-sm tracking-wide border transition-colors ${
                 active === c.slug
@@ -81,7 +87,7 @@ export default function Fleet() {
                 <motion.span layoutId="fleet-pill" className="absolute inset-0 bg-forest rounded-full -z-10" transition={{ type: 'spring', stiffness: 400, damping: 32 }} />
               )}
               {c.label}
-            </button>
+            </motion.button>
           ))}
         </div>
 

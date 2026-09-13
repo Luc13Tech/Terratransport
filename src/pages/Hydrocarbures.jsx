@@ -7,6 +7,7 @@ import {
 } from 'lucide-react'
 import { site } from '../data/site'
 import RouteLines from '../components/decor/RouteLines'
+import Button from '../components/ui/Button'
 
 const corridor = [
   { flag: '🇸🇳', name: 'Sénégal' },
@@ -381,7 +382,7 @@ export default function Hydrocarbures() {
               />
               <Link
                 to="/contact"
-                className="block bg-forest text-ivory rounded-sm px-6 py-4 hover:bg-forest-light transition-colors"
+                className="block bg-forest text-ivory rounded-sm px-6 py-4 hover:bg-forest-light hover:-translate-y-1 hover:shadow-xl transition-all duration-300"
               >
                 <p className="font-display text-lg text-brass leading-snug">Demander un devis</p>
                 <p className="font-mono text-xs tracking-widest2 uppercase mt-1 text-ivory/70">Quantité et disponibilité sur demande</p>
@@ -486,12 +487,11 @@ export default function Hydrocarbures() {
             selon votre volume, votre fréquence de rotation et votre
             destination. Contactez-nous pour en discuter.
           </p>
-          <Link
-            to="/contact"
-            className="inline-block mt-6 rounded-full bg-forest text-ivory px-8 py-3 text-sm tracking-wide hover:bg-forest-light transition-colors"
-          >
-            Nous contacter
-          </Link>
+          <div className="mt-6">
+            <Button to="/contact" variant="primary" size="md">
+              Nous contacter
+            </Button>
+          </div>
         </div>
       </section>
 
@@ -588,12 +588,9 @@ export default function Hydrocarbures() {
         <p className="font-mono text-xs tracking-widest2 uppercase text-brass mb-10">
           Sénégal · Gambie · Guinée-Bissau · Mauritanie · Mali · Afrique de l'Ouest
         </p>
-        <Link
-          to="/contact"
-          className="inline-block rounded-full bg-forest text-ivory px-8 py-3 text-sm tracking-wide hover:bg-forest-light transition-colors"
-        >
+        <Button to="/contact" variant="primary" size="lg">
           Nous contacter
-        </Link>
+        </Button>
       </section>
     </>
   )

@@ -1,18 +1,23 @@
 import { motion } from 'framer-motion'
+import HexagonField from '../components/decor/HexagonField'
+import SectionDivider from '../components/decor/SectionDivider'
+import Button from '../components/ui/Button'
 
-const partners = ['Shacman', 'Yutong', 'HOWO', 'Sinotruk', 'IVECO']
+const partners = ['Sinotruk', 'Shacman', 'Yutong', 'HOWO']
 
 export default function Partners() {
   return (
     <>
-      <section className="bg-forest text-ivory py-20">
-        <div className="container-tt">
+      <section className="relative overflow-hidden bg-forest text-ivory py-20">
+        <HexagonField />
+        <div className="container-tt relative">
           <p className="eyebrow mb-4 text-brass">Ils nous font confiance</p>
           <h1 className="font-display text-4xl md:text-5xl max-w-2xl">
             Des constructeurs reconnus, des partenariats durables.
           </h1>
         </div>
       </section>
+      <SectionDivider from="#0F3D2E" to="#F7F5EE" />
 
       <section className="container-tt py-20">
         <p className="text-charcoal/60 max-w-xl mb-14 leading-relaxed">
@@ -29,7 +34,8 @@ export default function Partners() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="border border-charcoal/10 rounded-sm py-10 flex items-center justify-center hover:border-brass hover:-translate-y-1 hover:shadow-md transition-all duration-300"
+              whileHover={{ y: -4 }}
+              className="border border-charcoal/10 rounded-sm py-10 flex items-center justify-center hover:border-brass hover:shadow-md transition-all duration-300"
             >
               <span className="font-display text-xl md:text-2xl text-forest tracking-tight">
                 {p}
@@ -41,12 +47,15 @@ export default function Partners() {
         <div className="mt-20 border-t border-charcoal/10 pt-14">
           <p className="eyebrow mb-4">Devenir partenaire</p>
           <h2 className="font-display text-2xl text-forest mb-4">
-            Revendeur ou transporteur affilié.
+            Revendeur ou transporteur affilié
           </h2>
-          <p className="text-charcoal/60 max-w-xl leading-relaxed">
+          <p className="text-charcoal/60 max-w-xl leading-relaxed mb-8">
             Vous représentez une flotte ou un réseau de distribution ? Parlons
             d'une collaboration adaptée à votre marché.
           </p>
+          <Button to="/contact" variant="primary" size="md">
+            Nous contacter
+          </Button>
         </div>
       </section>
     </>
