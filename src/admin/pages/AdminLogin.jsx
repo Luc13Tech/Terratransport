@@ -25,7 +25,11 @@ export default function AdminLogin() {
       await login(email, password)
       navigate('/admin')
     } catch (err) {
-      setError(err.message || 'Connexion impossible.')
+      if (err instanceof TypeError) {
+        setError("Impossible de contacter le serveur. Vérifie ta connexion et réessaie.")
+      } else {
+        setError(err.message || 'Connexion impossible.')
+      }
     } finally {
       setSubmitting(false)
     }
@@ -64,7 +68,7 @@ export default function AdminLogin() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full pl-6 border-b border-charcoal/20 bg-transparent py-2 focus:border-forest transition-colors outline-none text-sm"
-                placeholder="admin@terratransport-sa.com"
+                placeholder="Adresse email"
               />
             </div>
           </div>
