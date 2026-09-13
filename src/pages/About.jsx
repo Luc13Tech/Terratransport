@@ -1,23 +1,12 @@
 import { motion } from 'framer-motion'
-import { Zap, Globe2, ClipboardCheck, Fuel, Shield, Route, Eye } from 'lucide-react'
+import { Zap, Globe2, ClipboardCheck, Fuel, Shield, Eye } from 'lucide-react'
+import MineralField from '../components/decor/MineralField'
 import { site } from '../data/site'
 
 const values = [
-  {
-    title: 'Réactivité',
-    desc: 'Une demande, une réponse rapide — sans intermédiaire superflu.',
-    Icon: Zap,
-  },
-  {
-    title: 'Réseau',
-    desc: 'Un ancrage panafricain, pensé pour accompagner nos clients où que leur activité les mène sur le continent.',
-    Icon: Globe2,
-  },
-  {
-    title: 'Traçabilité',
-    desc: 'Un suivi clair de votre commande, du premier échange à la livraison.',
-    Icon: ClipboardCheck,
-  },
+  { title: 'Réactivité', desc: 'Une demande, une réponse rapide — sans intermédiaire superflu.', Icon: Zap },
+  { title: 'Réseau', desc: 'Un ancrage panafricain, pensé pour accompagner nos clients où que leur activité les mène sur le continent.', Icon: Globe2 },
+  { title: 'Traçabilité', desc: 'Un suivi clair de votre commande, du premier échange à la livraison.', Icon: ClipboardCheck },
 ]
 
 const corridor = ['Sénégal', 'Gambie', 'Guinée-Bissau', 'Mauritanie', 'Mali']
@@ -25,8 +14,9 @@ const corridor = ['Sénégal', 'Gambie', 'Guinée-Bissau', 'Mauritanie', 'Mali']
 export default function About() {
   return (
     <>
-      <section className="bg-forest text-ivory py-20">
-        <div className="container-tt">
+      <section className="relative overflow-hidden bg-forest text-ivory py-20">
+        <MineralField />
+        <div className="container-tt relative">
           <p className="eyebrow mb-4 text-brass">Qui sommes-nous</p>
           <h1 className="font-display text-4xl md:text-5xl max-w-2xl">
             {site.shortName} — une industrie mobile pour l'exploitation minière en Afrique.
@@ -34,7 +24,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* MISSION */}
       <section className="container-tt py-20 grid md:grid-cols-2 gap-16 items-start">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -70,7 +59,6 @@ export default function About() {
         />
       </section>
 
-      {/* L'ENERGIE EN MOUVEMENT */}
       <section className="bg-sage/30 py-20">
         <div className="container-tt grid md:grid-cols-2 gap-16 items-start">
           <motion.div
@@ -145,7 +133,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* ENGAGEMENT */}
       <section className="container-tt py-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -179,9 +166,9 @@ export default function About() {
         </motion.div>
       </section>
 
-      {/* VISION */}
-      <section className="bg-forest text-ivory py-20">
-        <div className="container-tt">
+      <section className="relative overflow-hidden bg-forest text-ivory py-20">
+        <MineralField />
+        <div className="container-tt relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -208,7 +195,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* VALEURS */}
       <section className="bg-sage/30 py-20">
         <div className="container-tt">
           <p className="eyebrow mb-4">Nos valeurs</p>

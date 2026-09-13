@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { motion } from 'framer-motion'
 import { Phone, Mail } from 'lucide-react'
+import SoftGlow from '../components/decor/SoftGlow'
 import { site, buildWhatsappLink } from '../data/site'
 import { categories } from '../data/vehicles'
 
@@ -13,14 +14,14 @@ export default function Contact() {
 
   const onSubmit = (data) => {
     const link = buildWhatsappLink(data)
-    // Ouvre WhatsApp avec le message pré-rempli.
     window.location.href = link
   }
 
   return (
     <>
-      <section className="bg-forest text-ivory py-20">
-        <div className="container-tt">
+      <section className="relative overflow-hidden bg-forest text-ivory py-20">
+        <SoftGlow />
+        <div className="container-tt relative">
           <p className="eyebrow mb-4 text-brass">Parlons-en</p>
           <h1 className="font-display text-4xl md:text-5xl max-w-2xl">
             Une question, une demande ? Écrivez-nous.

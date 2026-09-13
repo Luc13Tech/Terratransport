@@ -1,20 +1,50 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { categories, vehicles } from '../data/vehicles'
+import { categories } from '../data/vehicles'
 import VehicleCard from '../components/VehicleCard'
+import { CardSkeleton, WakingUpNotice, ErrorNotice } from '../components/LoadingStates'
+import HexagonField from '../components/decor/HexagonField'
+import { api } from '../lib/api'
 
 export default function Fleet() {
   const [active, setActive] = useState('tous')
+  const [vehicles, setVehicles] = useState(null)
+  const [error, setError] = useState(null)
+  const [slow, setSlow] = useState(false)
+
+  useEffect(() => {
+    let cancelled = false
+    const timer = setTimeout(() => !cancelled && setSlow(true), 4000)
+
+    api.vehicles
+      .list()
+      .then((data) => {
+        if (!cancelled) setVehicles(data)
+      })
+      .catch((err) => {
+        if (!cancelled) setError(err.message)
+      })
+      .finally(() => {
+        if (!cancelled) setSlow(false)
+      })
+
+    return () => {
+      cancelled = true
+      clearTimeout(timer)
+    }
+  }, [])
 
   const filtered = useMemo(() => {
+    if (!vehicles) return []
     if (active === 'tous') return vehicles
     return vehicles.filter((v) => v.category === active)
-  }, [active])
+  }, [vehicles, active])
 
   return (
     <>
-      <section className="bg-forest text-ivory py-20">
-        <div className="container-tt">
+      <section className="relative overflow-hidden bg-forest text-ivory py-20">
+        <HexagonField />
+        <div className="container-tt relative">
           <p className="eyebrow mb-4 text-brass">Notre flotte</p>
           <h1 className="font-display text-4xl md:text-5xl max-w-2xl">
             Chaque véhicule, choisi pour durer.
@@ -54,20 +84,31 @@ export default function Fleet() {
             </button>
           ))}
         </div>
-        <p className="font-mono text-xs tracking-wide text-charcoal/40 mb-10">
-          {filtered.length} véhicule{filtered.length > 1 ? 's' : ''}
-        </p>
 
-        {filtered.length > 0 ? (
-          <motion.div
-            layout
-            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14"
-          >
+        {vehicles && (
+          <p className="font-mono text-xs tracking-wide text-charcoal/40 mb-10">
+            {filtered.length} véhicule{filtered.length > 1 ? 's' : ''}
+          </p>
+        )}
+
+        {error && <ErrorNotice message="Impossible de charger la flotte pour le moment." />}
+
+        {!error && !vehicles && (
+          <>
+            {slow && <WakingUpNotice />}
+            <CardSkeleton count={8} />
+          </>
+        )}
+
+        {!error && vehicles && filtered.length > 0 && (
+          <motion.div layout className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14">
             {filtered.map((v, i) => (
-              <VehicleCard key={v.id} vehicle={v} index={i} />
+              <VehicleCard key={v._id} vehicle={v} index={i} />
             ))}
           </motion.div>
-        ) : (
+        )}
+
+        {!error && vehicles && filtered.length === 0 && (
           <div className="text-center py-24">
             <p className="font-display text-2xl text-charcoal/60 mb-2">
               Cette catégorie arrive bientôt.

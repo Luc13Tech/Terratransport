@@ -6,6 +6,7 @@ import {
   Wrench, Radar, GraduationCap, AlertTriangle,
 } from 'lucide-react'
 import { site } from '../data/site'
+import RouteLines from '../components/decor/RouteLines'
 
 const corridor = [
   { flag: '🇸🇳', name: 'Sénégal' },
@@ -150,9 +151,9 @@ function SectionEyebrow({ children }) {
 export default function Hydrocarbures() {
   return (
     <>
-      {/* HERO */}
-      <section className="bg-forest text-ivory py-24">
-        <div className="container-tt">
+      <section className="relative overflow-hidden bg-forest text-ivory py-24">
+        <RouteLines />
+        <div className="container-tt relative">
           <p className="eyebrow mb-4 text-brass">Transport & logistique des hydrocarbures</p>
           <h1 className="font-display text-3xl md:text-5xl max-w-3xl leading-tight">
             L'énergie en mouvement, au Sénégal et dans la sous-région.
@@ -175,7 +176,6 @@ export default function Hydrocarbures() {
         </div>
       </section>
 
-      {/* COUVERTURE REGIONALE */}
       <section className="container-tt py-20">
         <SectionEyebrow>Couverture régionale</SectionEyebrow>
         <h2 className="font-display text-2xl md:text-3xl text-forest mb-6 max-w-2xl">
@@ -217,7 +217,6 @@ export default function Hydrocarbures() {
         </p>
       </section>
 
-      {/* NOS SOLUTIONS */}
       <section className="bg-sage/30 py-20">
         <div className="container-tt">
           <SectionEyebrow>Nos solutions</SectionEyebrow>
@@ -263,7 +262,6 @@ export default function Hydrocarbures() {
         </div>
       </section>
 
-      {/* ENGAGEMENT SECURITE */}
       <section className="container-tt py-20">
         <SectionEyebrow>Notre engagement</SectionEyebrow>
         <h2 className="font-display text-2xl md:text-3xl text-forest mb-4 max-w-2xl">
@@ -312,7 +310,6 @@ export default function Hydrocarbures() {
         </p>
       </section>
 
-      {/* FLOTTE */}
       <section className="bg-sage/30 py-20">
         <div className="container-tt">
           <SectionEyebrow>Notre flotte</SectionEyebrow>
@@ -364,7 +361,6 @@ export default function Hydrocarbures() {
         </div>
       </section>
 
-      {/* FICHES TECHNIQUES */}
       <section className="container-tt py-24 space-y-24">
         {needs.map((n, i) => (
           <motion.div
@@ -413,7 +409,6 @@ export default function Hydrocarbures() {
         ))}
       </section>
 
-      {/* FIOUL */}
       <section className="container-tt py-4 pb-20">
         <SectionEyebrow>Autre produit transporté</SectionEyebrow>
         <h2 className="font-display text-2xl md:text-3xl text-forest mb-10">
@@ -446,7 +441,6 @@ export default function Hydrocarbures() {
         </p>
       </section>
 
-      {/* SYNTHESE COMPARATIVE */}
       <section className="bg-sage/30 py-20">
         <div className="container-tt">
           <SectionEyebrow>Synthèse comparative de la flotte gasoil</SectionEyebrow>
@@ -501,7 +495,6 @@ export default function Hydrocarbures() {
         </div>
       </section>
 
-      {/* PARTENAIRES */}
       <section className="container-tt py-20">
         <SectionEyebrow>Nos partenaires</SectionEyebrow>
         <h2 className="font-display text-2xl md:text-3xl text-forest mb-4 max-w-2xl">
@@ -548,9 +541,9 @@ export default function Hydrocarbures() {
         </div>
       </section>
 
-      {/* VISION */}
-      <section className="bg-forest text-ivory py-24">
-        <div className="container-tt">
+      <section className="relative overflow-hidden bg-forest text-ivory py-24">
+        <RouteLines />
+        <div className="container-tt relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -575,7 +568,6 @@ export default function Hydrocarbures() {
         </div>
       </section>
 
-      {/* CLOSING STATEMENT */}
       <section className="container-tt py-24 text-center">
         <motion.div
           initial={{ opacity: 0, y: 16 }}

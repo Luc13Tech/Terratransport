@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { site } from '../data/site'
+import RouteLines from '../components/decor/RouteLines'
 
 const sections = [
   {
@@ -151,8 +152,9 @@ const sections = [
 export default function RFIGuinee() {
   return (
     <>
-      <section className="bg-forest text-ivory py-20">
-        <div className="container-tt">
+      <section className="relative overflow-hidden bg-forest text-ivory py-20">
+        <RouteLines />
+        <div className="container-tt relative">
           <p className="eyebrow mb-4 text-brass">Demande d'informations (RFI)</p>
           <h1 className="font-display text-3xl md:text-5xl max-w-3xl leading-tight">
             Projet de transport logistique de minerais — République de Guinée, Conakry.
