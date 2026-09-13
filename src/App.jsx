@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { AuthProvider } from './context/AuthContext'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import ChatWidget from './components/chatbot/ChatWidget'
 import Home from './pages/Home'
 import Services from './pages/Services'
 import Fleet from './pages/Fleet'
@@ -58,6 +59,7 @@ function PublicSite() {
         <Route path="*" element={<PageTransition key={location.pathname}><NotFound /></PageTransition>} />
       </Routes>
       <Footer />
+      <ChatWidget />
     </div>
   )
 }
