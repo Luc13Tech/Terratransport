@@ -1,11 +1,12 @@
 import { NavLink, useNavigate } from 'react-router-dom'
-import { Truck, Layers, FileText, LogOut, ExternalLink } from 'lucide-react'
+import { Truck, Layers, FileText, Handshake, LogOut, ExternalLink } from 'lucide-react'
 import { useAuth } from '../../context/AuthContext'
 import { site } from '../../data/site'
 
 const links = [
   { to: '/admin', label: 'Véhicules', Icon: Truck, end: true },
   { to: '/admin/services', label: 'Services', Icon: Layers },
+  { to: '/admin/partenaires', label: 'Partenaires', Icon: Handshake },
   { to: '/admin/contenu', label: 'Contenu du site', Icon: FileText },
 ]
 
