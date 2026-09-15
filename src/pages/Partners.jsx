@@ -1,11 +1,32 @@
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import HexagonField from '../components/decor/HexagonField'
 import SectionDivider from '../components/decor/SectionDivider'
 import Button from '../components/ui/Button'
-
-const partners = ['Sinotruk', 'Shacman', 'Yutong', 'HOWO']
+import { CardSkeleton, WakingUpNotice, ErrorNotice } from '../components/LoadingStates'
+import { api } from '../lib/api'
 
 export default function Partners() {
+  const [partners, setPartners] = useState(null)
+  const [error, setError] = useState('')
+  const [slow, setSlow] = useState(false)
+
+  useEffect(() => {
+    let cancelled = false
+    const timer = setTimeout(() => !cancelled && setSlow(true), 4000)
+
+    api.partners
+      .list()
+      .then((data) => !cancelled && setPartners(data))
+      .catch((err) => !cancelled && setError(err.message))
+      .finally(() => !cancelled && setSlow(false))
+
+    return () => {
+      cancelled = true
+      clearTimeout(timer)
+    }
+  }, [])
+
   return (
     <>
       <section className="relative overflow-hidden bg-forest text-ivory py-20">
@@ -26,23 +47,33 @@ export default function Partners() {
           qualité de leur accompagnement.
         </p>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {partners.map((p, i) => (
-            <motion.div
-              key={p}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              whileHover={{ y: -4 }}
-              className="border border-charcoal/10 rounded-sm py-10 flex items-center justify-center hover:border-brass hover:shadow-md transition-all duration-300"
-            >
-              <span className="font-display text-xl md:text-2xl text-forest tracking-tight">
-                {p}
-              </span>
-            </motion.div>
-          ))}
-        </div>
+        {error && <ErrorNotice message="Impossible de charger les partenaires pour le moment." />}
+        {!error && !partners && (
+          <>
+            {slow && <WakingUpNotice />}
+            <CardSkeleton count={4} />
+          </>
+        )}
+
+        {!error && partners && (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {partners.map((p, i) => (
+              <motion.div
+                key={p._id}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                whileHover={{ y: -4 }}
+                className="border border-charcoal/10 rounded-sm py-10 flex items-center justify-center hover:border-brass hover:shadow-md transition-all duration-300"
+              >
+                <span className="font-display text-xl md:text-2xl text-forest tracking-tight">
+                  {p.name}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+        )}
 
         <div className="mt-20 border-t border-charcoal/10 pt-14">
           <p className="eyebrow mb-4">Devenir partenaire</p>
