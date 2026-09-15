@@ -66,6 +66,13 @@ export const api = {
     update: (id, data) => request(`/api/services/${id}`, { method: 'PUT', body: JSON.stringify(data) }, { auth: true }),
     remove: (id) => request(`/api/services/${id}`, { method: 'DELETE' }, { auth: true }),
   },
+  partners: {
+    list: () => request('/api/partners'),
+    listAll: () => request('/api/partners/admin/all', {}, { auth: true }),
+    create: (data) => request('/api/partners', { method: 'POST', body: JSON.stringify(data) }, { auth: true }),
+    update: (id, data) => request(`/api/partners/${id}`, { method: 'PUT', body: JSON.stringify(data) }, { auth: true }),
+    remove: (id) => request(`/api/partners/${id}`, { method: 'DELETE' }, { auth: true }),
+  },
   content: {
     list: (page) => request(`/api/content${page ? `?page=${encodeURIComponent(page)}` : ''}`),
     listAdmin: (page) => request(`/api/content/admin${page ? `?page=${encodeURIComponent(page)}` : ''}`, {}, { auth: true }),
