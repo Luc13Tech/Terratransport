@@ -1,6 +1,6 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { useEffect } from 'react'
+import { useEffect, useLayoutEffect } from 'react'
 import { AuthProvider } from './context/AuthContext'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -18,6 +18,7 @@ import NotFound from './pages/NotFound'
 import AdminLogin from './admin/pages/AdminLogin'
 import AdminVehicles from './admin/pages/AdminVehicles'
 import AdminServices from './admin/pages/AdminServices'
+import AdminPartners from './admin/pages/AdminPartners'
 import AdminContent from './admin/pages/AdminContent'
 import ProtectedRoute from './admin/components/ProtectedRoute'
 
@@ -35,9 +36,25 @@ function PageTransition({ children }) {
 
 function ScrollToTop() {
   const { pathname } = useLocation()
+
+  // Empêche le navigateur de restaurer une ancienne position de scroll
+  // (surtout gênant avec les boutons précédent/suivant).
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'auto' })
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual'
+    }
+  }, [])
+
+  // useLayoutEffect s'exécute avant que le navigateur peigne l'écran, donc
+  // aucun flash de l'ancienne position n'est visible. On force le retour en
+  // haut sur plusieurs cibles (html, body, window) pour couvrir les
+  // différences de comportement entre navigateurs.
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0)
+    document.documentElement.scrollTop = 0
+    document.body.scrollTop = 0
   }, [pathname])
+
   return null
 }
 
@@ -75,6 +92,7 @@ export default function App() {
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<ProtectedRoute><AdminVehicles /></ProtectedRoute>} />
           <Route path="/admin/services" element={<ProtectedRoute><AdminServices /></ProtectedRoute>} />
+          <Route path="/admin/partenaires" element={<ProtectedRoute><AdminPartners /></ProtectedRoute>} />
           <Route path="/admin/contenu" element={<ProtectedRoute><AdminContent /></ProtectedRoute>} />
         </Routes>
       ) : (
