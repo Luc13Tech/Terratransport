@@ -1,103 +1,109 @@
-import { Routes, Route, useLocation } from 'react-router-dom'
-import { motion } from 'framer-motion'
-import { useEffect, useLayoutEffect } from 'react'
-import { AuthProvider } from './context/AuthContext'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
-import ChatWidget from './components/chatbot/ChatWidget'
-import Home from './pages/Home'
-import Services from './pages/Services'
-import Fleet from './pages/Fleet'
-import About from './pages/About'
-import Partners from './pages/Partners'
-import Contact from './pages/Contact'
-import RFIGuinee from './pages/RFIGuinee'
-import Hydrocarbures from './pages/Hydrocarbures'
-import NotFound from './pages/NotFound'
+import React, { useEffect, useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
+import FloatingButtons from './components/layout/FloatingButtons';
+import AIAssistant from './components/layout/AIAssistant';
+import Home from './pages/Home';
+import ServicePage from './pages/ServicePage';
+import Properties from './pages/Properties';
+import PropertyDetail from './pages/PropertyDetail';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Account from './pages/Account';
+import RequireUser from './components/ui/RequireUser';
+import { getContent } from './api/client';
 
-import AdminLogin from './admin/pages/AdminLogin'
-import AdminVehicles from './admin/pages/AdminVehicles'
-import AdminServices from './admin/pages/AdminServices'
-import AdminPartners from './admin/pages/AdminPartners'
-import AdminContent from './admin/pages/AdminContent'
-import ProtectedRoute from './admin/components/ProtectedRoute'
+import AdminLogin from './admin/AdminLogin';
+import AdminLayout from './admin/AdminLayout';
+import AdminDashboard from './admin/AdminDashboard';
+import ServicesManager from './admin/ServicesManager';
+import PropertiesManager from './admin/PropertiesManager';
+import LeadsManager from './admin/LeadsManager';
+import ContentManager from './admin/ContentManager';
+import AIKnowledgeManager from './admin/AIKnowledgeManager';
+import AuditLogManager from './admin/AuditLogManager';
+import ProtectedRoute from './admin/ProtectedRoute';
+import RequireRole from './components/ui/RequireRole';
 
-function PageTransition({ children }) {
+function PublicLayout({ content }) {
+  const [assistantOpen, setAssistantOpen] = useState(false);
+
   return (
-    <motion.main
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.3, ease: 'easeOut' }}
-    >
-      {children}
-    </motion.main>
-  )
-}
+    <div className="min-h-screen flex flex-col">
+      <Header />
 
-function ScrollToTop() {
-  const { pathname } = useLocation()
+      <main className="flex-1">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/services/:slug" element={<ServicePage />} />
+          <Route path="/biens" element={<Properties />} />
+          <Route path="/biens/:id" element={<PropertyDetail />} />
+          <Route path="/a-propos" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/connexion" element={<Login />} />
+          <Route path="/inscription" element={<Register />} />
+          <Route
+            path="/mon-compte"
+            element={
+              <RequireUser>
+                <Account />
+              </RequireUser>
+            }
+          />
+        </Routes>
+      </main>
 
-  // Empêche le navigateur de restaurer une ancienne position de scroll
-  // (surtout gênant avec les boutons précédent/suivant).
-  useEffect(() => {
-    if ('scrollRestoration' in window.history) {
-      window.history.scrollRestoration = 'manual'
-    }
-  }, [])
+      <Footer content={content} />
 
-  // useLayoutEffect s'exécute avant que le navigateur peigne l'écran, donc
-  // aucun flash de l'ancienne position n'est visible. On force le retour en
-  // haut sur plusieurs cibles (html, body, window) pour couvrir les
-  // différences de comportement entre navigateurs.
-  useLayoutEffect(() => {
-    window.scrollTo(0, 0)
-    document.documentElement.scrollTop = 0
-    document.body.scrollTop = 0
-  }, [pathname])
-
-  return null
-}
-
-function PublicSite() {
-  const location = useLocation()
-  return (
-    <div className="flex flex-col min-h-screen">
-      <Navbar />
-      <ScrollToTop />
-      <Routes location={location}>
-        <Route path="/" element={<PageTransition key={location.pathname}><Home /></PageTransition>} />
-        <Route path="/services" element={<PageTransition key={location.pathname}><Services /></PageTransition>} />
-        <Route path="/flotte" element={<PageTransition key={location.pathname}><Fleet /></PageTransition>} />
-        <Route path="/a-propos" element={<PageTransition key={location.pathname}><About /></PageTransition>} />
-        <Route path="/partenariats" element={<PageTransition key={location.pathname}><Partners /></PageTransition>} />
-        <Route path="/contact" element={<PageTransition key={location.pathname}><Contact /></PageTransition>} />
-        <Route path="/rfi/guinee-conakry" element={<PageTransition key={location.pathname}><RFIGuinee /></PageTransition>} />
-        <Route path="/hydrocarbures" element={<PageTransition key={location.pathname}><Hydrocarbures /></PageTransition>} />
-        <Route path="*" element={<PageTransition key={location.pathname}><NotFound /></PageTransition>} />
-      </Routes>
-      <Footer />
-      <ChatWidget />
+      <FloatingButtons
+        whatsapp={(content['contact.whatsapp'] || '+221778294142').replace(/[^\d]/g, '')}
+        onOpenAssistant={() => setAssistantOpen((v) => !v)}
+      />
+      <AIAssistant open={assistantOpen} onClose={() => setAssistantOpen(false)} />
     </div>
-  )
+  );
 }
 
 export default function App() {
-  const location = useLocation()
-  const isAdminRoute = location.pathname.startsWith('/admin')
+  const [content, setContent] = useState({});
+
+  useEffect(() => {
+    getContent().then(setContent).catch(() => {});
+  }, []);
 
   return (
-    <AuthProvider>
-      {isAdminRoute ? (
-        <Routes>
-          <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/admin" element={<ProtectedRoute><AdminVehicles /></ProtectedRoute>} />
-          <Route path="/admin/services" element={<ProtectedRoute><AdminServices /></ProtectedRoute>} />
-          <Route path="/admin/partenaires" element={<ProtectedRoute><AdminPartners /></ProtectedRoute>} />
-          <Route path="/admin/contenu" element={<ProtectedRoute><AdminContent /></ProtectedRoute>} />
-        </Routes>
-      ) : (
-        <PublicSite />
-      )}
-    </AuthProvider>
-  )
+    <Routes>
+      {/* Espace admin — pas de Header/Footer/boutons flottants publics */}
+      <Route path="/admin/login" element={<AdminLogin />} />
+      <Route
+        path="/admin"
+        element={
+          <ProtectedRoute>
+            <AdminLayout />
+          </ProtectedRoute>
+        }
+      >
+        <Route index element={<AdminDashboard />} />
+        <Route path="services" element={<ServicesManager />} />
+        <Route path="biens" element={<PropertiesManager />} />
+        <Route path="demandes" element={<LeadsManager />} />
+        <Route path="contenu" element={<ContentManager />} />
+        <Route path="assistant" element={<AIKnowledgeManager />} />
+        <Route
+          path="audit"
+          element={
+            <RequireRole roles={['superadmin']}>
+              <AuditLogManager />
+            </RequireRole>
+          }
+        />
+      </Route>
+
+      {/* Site public */}
+      <Route path="/*" element={<PublicLayout content={content} />} />
+    </Routes>
+  );
 }
