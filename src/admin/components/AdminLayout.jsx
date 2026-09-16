@@ -1,113 +1,138 @@
-import { NavLink, useNavigate } from 'react-router-dom'
-import { Truck, Layers, FileText, Handshake, LogOut, ExternalLink } from 'lucide-react'
-import { useAuth } from '../../context/AuthContext'
-import { site } from '../../data/site'
+import React, { useState } from 'react';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  LayoutDashboard,
+  Layers,
+  Building2,
+  Inbox,
+  FileText,
+  Bot,
+  ShieldCheck,
+  LogOut,
+  Menu,
+  X,
+} from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
+import { adminLogout } from '../api/client';
+import logo from '../assets/images/logo.png';
 
-const links = [
-  { to: '/admin', label: 'Véhicules', Icon: Truck, end: true },
-  { to: '/admin/services', label: 'Services', Icon: Layers },
-  { to: '/admin/partenaires', label: 'Partenaires', Icon: Handshake },
-  { to: '/admin/contenu', label: 'Contenu du site', Icon: FileText },
-]
+const NAV = [
+  { to: '/admin', label: 'Tableau de bord', icon: LayoutDashboard, end: true },
+  { to: '/admin/services', label: 'Les 7 métiers', icon: Layers },
+  { to: '/admin/biens', label: 'Biens immobiliers', icon: Building2 },
+  { to: '/admin/demandes', label: 'Demandes reçues', icon: Inbox },
+  { to: '/admin/contenu', label: 'Contenu du site', icon: FileText },
+  { to: '/admin/assistant', label: 'Assistant IA', icon: Bot },
+];
 
-export default function AdminLayout({ children }) {
-  const { admin, logout } = useAuth()
-  const navigate = useNavigate()
+export default function AdminLayout() {
+  const { admin, logout } = useAuth();
+  const navigate = useNavigate();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
-  function handleLogout() {
-    logout()
-    navigate('/admin/login')
+  // "Journal de surveillance" n'apparaît que pour le rôle superadmin.
+  // Rappel : ceci est uniquement cosmétique — la vraie protection est
+  // côté backend (requireRole sur /api/admin-audit).
+  const navItems =
+    admin?.role === 'superadmin'
+      ? [...NAV, { to: '/admin/audit', label: 'Journal de surveillance', icon: ShieldCheck }]
+      : NAV;
+
+  async function handleLogout() {
+    try {
+      await adminLogout(); // trace l'événement LOGOUT avant de vider le token
+    } catch {
+      // même en cas d'échec réseau, on déconnecte quand même localement
+    }
+    logout();
+    navigate('/admin/login');
   }
 
-  return (
-    <div className="min-h-screen bg-sage/20 flex">
-      {/* SIDEBAR */}
-      <aside className="w-64 bg-charcoal text-ivory/80 flex flex-col shrink-0 hidden md:flex">
-        <div className="flex items-center gap-3 px-6 py-6 border-b border-ivory/10">
-          <img
-            src="/images/logo/logo-truck.jpg"
-            alt={site.name}
-            className="h-9 w-9 rounded-full object-cover"
-          />
-          <div>
-            <p className="font-display text-sm text-ivory leading-tight">{site.shortName}</p>
-            <p className="font-mono text-[9px] tracking-widest2 uppercase text-brass">Admin</p>
-          </div>
-        </div>
-
-        <nav className="flex-1 px-3 py-6 space-y-1">
-          {links.map((l) => (
-            <NavLink
-              key={l.to}
-              to={l.to}
-              end={l.end}
-              className={({ isActive }) =>
-                `flex items-center gap-3 px-3 py-2.5 rounded-sm text-sm transition-colors ${
-                  isActive ? 'bg-forest text-ivory' : 'text-ivory/60 hover:bg-ivory/5 hover:text-ivory'
-                }`
-              }
-            >
-              <l.Icon size={17} strokeWidth={1.5} />
-              {l.label}
-            </NavLink>
-          ))}
-        </nav>
-
-        <div className="px-3 py-6 border-t border-ivory/10 space-y-1">
-          <a
-            href="/"
-            target="_blank"
-            rel="noreferrer"
-            className="flex items-center gap-3 px-3 py-2.5 rounded-sm text-sm text-ivory/60 hover:bg-ivory/5 hover:text-ivory transition-colors"
-          >
-            <ExternalLink size={17} strokeWidth={1.5} />
-            Voir le site
-          </a>
-          <button
-            onClick={handleLogout}
-            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-sm text-sm text-ivory/60 hover:bg-ivory/5 hover:text-ivory transition-colors"
-          >
-            <LogOut size={17} strokeWidth={1.5} />
-            Déconnexion
-          </button>
-        </div>
-      </aside>
-
-      {/* MOBILE TOP BAR */}
-      <div className="md:hidden fixed top-0 left-0 right-0 z-40 bg-charcoal text-ivory flex items-center justify-between px-4 py-3">
-        <div className="flex items-center gap-2">
-          <img src="/images/logo/logo-truck.jpg" alt={site.name} className="h-7 w-7 rounded-full object-cover" />
-          <span className="font-display text-sm">{site.shortName} Admin</span>
-        </div>
-        <button onClick={handleLogout} className="text-ivory/70">
-          <LogOut size={18} strokeWidth={1.5} />
-        </button>
+  const SidebarContent = (
+    <>
+      <div className="flex items-center gap-3 px-6 py-6 border-b border-white/10">
+        <img src={logo} alt="BF IMMO" className="h-9 w-9 rounded-lg object-cover" />
+        <span
+          className="text-lg text-white"
+          style={{ fontFamily: '"Times New Roman", Times, serif' }}
+        >
+          BF <em className="not-italic text-brand-red">Immo</em>
+        </span>
       </div>
-      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-charcoal text-ivory flex justify-around py-2">
-        {links.map((l) => (
+
+      <nav className="flex-1 px-3 py-6 space-y-1">
+        {navItems.map((item) => (
           <NavLink
-            key={l.to}
-            to={l.to}
-            end={l.end}
-            className={({ isActive }) => `flex flex-col items-center gap-1 px-3 py-1 text-[10px] ${isActive ? 'text-brass' : 'text-ivory/50'}`}
+            key={item.to}
+            to={item.to}
+            end={item.end}
+            onClick={() => setMobileOpen(false)}
+            className={({ isActive }) =>
+              `flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
+                isActive
+                  ? 'bg-white/10 text-white'
+                  : 'text-white/55 hover:text-white hover:bg-white/5'
+              }`
+            }
           >
-            <l.Icon size={18} strokeWidth={1.5} />
-            {l.label}
+            <item.icon size={17} />
+            {item.label}
           </NavLink>
         ))}
-      </div>
+      </nav>
 
-      {/* CONTENT */}
-      <main className="flex-1 min-w-0 pt-16 pb-20 md:pt-0 md:pb-0">
-        <div className="max-w-6xl mx-auto px-6 py-10">
-          <div className="flex items-center justify-between mb-8">
-            <p className="text-sm text-charcoal/50">
-              Connecté en tant que <strong className="text-charcoal">{admin?.name}</strong>
-            </p>
-          </div>
-          {children}
+      <div className="px-6 py-5 border-t border-white/10">
+        <p className="text-white/40 text-[11px] font-mono truncate">{admin?.email}</p>
+        <p className="text-white/25 text-[10px] font-mono uppercase tracking-wide mt-0.5">
+          {admin?.role === 'superadmin' ? 'Superadmin' : 'Administrateur'}
+        </p>
+        <button
+          onClick={handleLogout}
+          className="mt-3 flex items-center gap-2 text-white/60 hover:text-brand-red text-sm font-medium transition-colors"
+        >
+          <LogOut size={15} /> Déconnexion
+        </button>
+      </div>
+    </>
+  );
+
+  return (
+    <div className="min-h-screen bg-offwhite flex">
+      <aside className="hidden lg:flex flex-col w-64 bg-ink shrink-0">{SidebarContent}</aside>
+
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.aside
+            initial={{ x: '-100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '-100%' }}
+            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            className="fixed inset-y-0 left-0 z-50 w-72 bg-ink flex flex-col lg:hidden"
+          >
+            <button
+              onClick={() => setMobileOpen(false)}
+              className="absolute top-5 right-5 text-white/60"
+            >
+              <X size={22} />
+            </button>
+            {SidebarContent}
+          </motion.aside>
+        )}
+      </AnimatePresence>
+
+      <div className="flex-1 min-w-0">
+        <div className="lg:hidden flex items-center justify-between px-5 py-4 bg-ink">
+          <span className="text-white font-semibold text-sm">Administration</span>
+          <button onClick={() => setMobileOpen(true)} className="text-white">
+            <Menu size={22} />
+          </button>
         </div>
-      </main>
+
+        <main className="p-6 sm:p-10">
+          <Outlet />
+        </main>
+      </div>
     </div>
-  )
+  );
 }
